@@ -34,8 +34,8 @@ function check_solution()
 
 function new_problem()
 {
-  left = getRandomInt(1,10);
-  right = getRandomInt(1,10);
+  left = getRandomInt(1,30);
+  right = getRandomInt(1,30);
   document.getElementById("problem").textContent = left+' '+op+' '+right;
 }
 
