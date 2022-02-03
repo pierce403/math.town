@@ -2,7 +2,7 @@ console.log("app.js loaded");
 
 let left=0;
 let right=0;
-let op='+'
+let op='*'
 
 let maxSpM = 0;
 
@@ -11,8 +11,18 @@ let solves=[]
 let solElm = document.getElementById("solution");
 solElm.focus();
 solElm.onkeyup = function(e){
-    if(e.keyCode == 13){
-       check_solution();
+    if(e.keyCode == 13)check_solution();
+   
+    if(e.key == '+' )
+    {
+      op='+';
+      new_problem();
+    }
+
+    if(e.key == '*' )
+    {
+      op='*';
+      new_problem();
     }
 }
 new_problem();
@@ -40,9 +50,10 @@ function check_solution()
 
 function new_problem()
 {
-  left = getRandomInt(1,30);
-  right = getRandomInt(1,30);
+  left = getRandomInt(1,20);
+  right = getRandomInt(1,20);
   document.getElementById("problem").textContent = left+' '+op+' '+right;
+  solElm.value="";
 }
 
 function print_stats()
