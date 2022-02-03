@@ -4,6 +4,10 @@ let left=0;
 let right=0;
 let op='+'
 
+let maxSpM = 0;
+
+let solves=[]
+
 let solElm = document.getElementById("solution");
 solElm.focus();
 solElm.onkeyup = function(e){
@@ -23,12 +27,14 @@ function check_solution()
   {
     console.log("YAY!");
     document.getElementById("stats").textContent = "YAY!";
+    solves.push(Date.now());
   }
   else
   {
     console.log("NOPE!")
     document.getElementById("stats").textContent = "NOPE!";
   }
+  print_stats();
   new_problem();
 }
 
@@ -42,6 +48,16 @@ function new_problem()
 function print_stats()
 {
   let stats = "YAY STATS";
+
+  console.log(solves);
+  //console.log("comparing"+" "+solves[0]+" "+(Date.now()-60000))
+  while( solves.length>0 && (solves[0]<(Date.now()-60000)) )
+    console.log("REMOVING "+solves.shift());
+
+  console.log(solves);
+  if( solves.length > maxSpM ) maxSpM = solves.length;
+
+  stats = "Solves per Minute: "+solves.length+"\nMaximum SpM: "+maxSpM;
   document.getElementById("stats").textContent = stats;
 }
 
