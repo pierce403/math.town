@@ -1,0 +1,52 @@
+console.log("app.js loaded");
+
+let left=0;
+let right=0;
+let op='+'
+
+let solElm = document.getElementById("solution");
+solElm.focus();
+solElm.onkeyup = function(e){
+    if(e.keyCode == 13){
+       check_solution();
+    }
+}
+new_problem();
+
+function check_solution()
+{
+  solve = parseInt(solElm.value);
+  console.log("Yup, that's "+solve);
+  solElm.value="";
+
+  if(solve == eval(left+op+right))
+  {
+    console.log("YAY!");
+    document.getElementById("stats").textContent = "YAY!";
+  }
+  else
+  {
+    console.log("NOPE!")
+    document.getElementById("stats").textContent = "NOPE!";
+  }
+  new_problem();
+}
+
+function new_problem()
+{
+  left = getRandomInt(1,10);
+  right = getRandomInt(1,10);
+  document.getElementById("problem").textContent = left+' '+op+' '+right;
+}
+
+function print_stats()
+{
+  let stats = "YAY STATS";
+  document.getElementById("stats").textContent = stats;
+}
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+}
